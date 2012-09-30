@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>web-test</groupId>
-  <artifactId>web-test</artifactId>
+  <groupId>book-club</groupId>
+  <artifactId>book-club</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>web-test Maven Webapp</name>
+  <name>book-club Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -94,6 +94,12 @@
         <artifactId>spring-webmvc</artifactId>
         <version>${org.springframework.version}</version>
     </dependency>
+    
+    <dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>3.0.5.RELEASE</version>
+	</dependency>
 
   </dependencies>
   <build>
