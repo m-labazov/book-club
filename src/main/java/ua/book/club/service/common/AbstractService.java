@@ -9,7 +9,7 @@ import ua.book.club.service.IService;
 public class AbstractService<T extends IIdentifiable, D extends IDao<T>>
 		implements IService<T> {
 
-	private D dao;
+	protected D dao;
 
 	@Override
 	public T get(String id) {
@@ -29,13 +29,13 @@ public class AbstractService<T extends IIdentifiable, D extends IDao<T>>
 	}
 
 	@Override
-	public void delete(String id) {
-		dao.delete(id);
+	public void delete(T entity) {
+		dao.delete(entity);
 	}
 
 	@Override
-	public void update(T entity) {
-		dao.update(entity);
+	public void update(T entity, String entityName) {
+		dao.update(entity, entityName);
 	}
 
 }

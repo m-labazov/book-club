@@ -12,8 +12,8 @@ public interface IService<T extends IIdentifiable> {
 
 	void insert(T entity);
 
-	void delete(String id);
+	void update(T entity, String entityName);
 
-	void update(T entity);
+	void delete(T entity);
 
 }

@@ -12,8 +12,8 @@ public interface IDao<T extends IIdentifiable> {
 
 	public void insert(T entity);
 
-	public void delete(String id);
+	public void update(T entity, String entityName);
 
-	public void update(T entity);
+	public void delete(T entity);
 
 }

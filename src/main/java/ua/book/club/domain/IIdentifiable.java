@@ -6,4 +6,6 @@ public interface IIdentifiable {
 
 	void setId(long id);
 
+	boolean isNew();
+
 }

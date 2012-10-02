@@ -15,8 +15,16 @@ public class UserService extends AbstractService<User, UserDao> implements
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		User user = getByUsername(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("User with name '" + username
+					+ "' doesn't exist.");
+		}
+		return user;
+	}
+
+	public User getByUsername(String username) {
+		return dao.getByUsername(username);
 	}
 
 }

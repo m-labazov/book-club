@@ -2,39 +2,47 @@ package ua.book.club.dao.common;
 
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import ua.book.club.dao.IDao;
 import ua.book.club.domain.IIdentifiable;
 
-public class AbstractDao<T extends IIdentifiable> implements IDao<T> {
+@SuppressWarnings("unchecked")
+public abstract class AbstractDao<T extends IIdentifiable> extends
+		HibernateDaoSupport implements IDao<T> {
+
+	protected abstract Class<T> getEntityClass();
 
 	@Override
 	public T get(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		T result = (T) getSession().createCriteria(getEntityClass())
+				.add(Restrictions.eq("id", id)).uniqueResult();
+		return result;
 	}
 
 	@Override
 	public List<T> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<T> result = getSession().createCriteria(getEntityClass()).list();
+		return result;
 	}
 
-	@Override
 	public void insert(T entity) {
-		// TODO Auto-generated method stub
-
+		update(entity, null);
 	}
 
 	@Override
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-
+	public void update(T entity, String entityName) {
+		if (entity.isNew()) {
+			getSession().save(entityName, entity);
+		} else {
+			Object merged = getSession().merge(entityName, entity);
+			getSession().saveOrUpdate(entityName, merged);
+		}
 	}
 
 	@Override
-	public void update(T entity) {
-		// TODO Auto-generated method stub
-
+	public void delete(T entity) {
+		getSession().delete(entity);
 	}
-
 }
