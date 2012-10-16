@@ -6,7 +6,7 @@ import ua.book.club.domain.IIdentifiable;
 
 public interface IDao<T extends IIdentifiable> {
 
-	public T get(String id);
+	public T get(long id);
 
 	public List<T> listAll();
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="properties">
+		<props>
+			<prop key="jdbc.url">jdbc:mysql://localhost:3306/book_club</prop>
+			<prop key="jdbc.username">root</prop>
+			<prop key="jdbc.password">root</prop>
+			<prop key="jdbc.maxIdle">2</prop>
+			<prop key="jdbc.maxActive">10</prop>
+			<prop key="jdbc.maxWait">60000</prop>
+			<prop key="jdbc.driver">com.mysql.jdbc.Driver</prop>
+			<prop key="hibernate.hbm2ddl">true</prop>
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			<prop key="hibernate.show_sql">true</prop>
+    	</props>
+    </property>
+</bean>
+
+</beans>

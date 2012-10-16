@@ -2,20 +2,26 @@ package ua.book.club.dao.common;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import ua.book.club.dao.IDao;
 import ua.book.club.domain.IIdentifiable;
 
 @SuppressWarnings("unchecked")
-public abstract class AbstractDao<T extends IIdentifiable> extends
-		HibernateDaoSupport implements IDao<T> {
+public abstract class AbstractDao<T extends IIdentifiable> implements IDao<T> {
+
+	private SessionFactory sessionFactory;
 
 	protected abstract Class<T> getEntityClass();
 
+	protected final Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
 	@Override
-	public T get(String id) {
+	public T get(long id) {
 		T result = (T) getSession().createCriteria(getEntityClass())
 				.add(Restrictions.eq("id", id)).uniqueResult();
 		return result;
@@ -44,5 +50,9 @@ public abstract class AbstractDao<T extends IIdentifiable> extends
 	@Override
 	public void delete(T entity) {
 		getSession().delete(entity);
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 }

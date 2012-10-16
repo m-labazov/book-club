@@ -4,7 +4,7 @@ import ua.book.club.domain.IIdentifiable;
 
 public class Identifier implements IIdentifiable {
 
-	private long id;
+	private long id = -1;
 
 	@Override
 	public long getId() {

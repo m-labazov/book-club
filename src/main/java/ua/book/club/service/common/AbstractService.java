@@ -12,7 +12,7 @@ public class AbstractService<T extends IIdentifiable, D extends IDao<T>>
 	protected D dao;
 
 	@Override
-	public T get(String id) {
+	public T get(long id) {
 		T result = dao.get(id);
 		return result;
 	}
@@ -36,6 +36,14 @@ public class AbstractService<T extends IIdentifiable, D extends IDao<T>>
 	@Override
 	public void update(T entity, String entityName) {
 		dao.update(entity, entityName);
+	}
+
+	public D getDao() {
+		return dao;
+	}
+
+	public void setDao(D dao) {
+		this.dao = dao;
 	}
 
 }

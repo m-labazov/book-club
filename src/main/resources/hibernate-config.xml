@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	       
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>	
+       
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+       			<value>mappings\user.hbm.xml</value>
+            </list>
+        </property>
+         <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+	  	        <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl}</prop>
+            </props>
+        </property>
+    </bean>
+    
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSourceFactory" factory-method="createDataSource">
+		<constructor-arg>
+            <props>
+		        <prop key="driverClassName">${jdbc.driver}</prop>
+		        <prop key="url">${jdbc.url}</prop>
+		        <prop key="username">${jdbc.username}</prop>
+	  	        <prop key="password">${jdbc.password}</prop>
+				<prop key="maxWait">${jdbc.maxWait}</prop>
+				<prop key="maxActive">${jdbc.maxActive}</prop>
+				<prop key="maxIdle">${jdbc.maxIdle}</prop>
+		        <prop key="connectionProperties">useUnicode=true;characterEncoding=utf8;</prop>
+            </props>
+		</constructor-arg>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" 
+    	p:session-factory-ref="sessionFactory"  	p:nested-transaction-allowed="true"/>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>	       
+	       
+</beans>

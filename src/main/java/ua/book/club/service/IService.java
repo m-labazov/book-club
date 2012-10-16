@@ -6,7 +6,7 @@ import ua.book.club.domain.IIdentifiable;
 
 public interface IService<T extends IIdentifiable> {
 
-	T get(String id);
+	T get(long id);
 
 	List<T> listAll();
 
