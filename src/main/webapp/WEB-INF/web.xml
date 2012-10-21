@@ -8,9 +8,11 @@
   <context-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>
-          classpath:*-context.xml
+          classpath:application.xml
           classpath:hibernate-config.xml
-          classpath*:META-INF/*-context.xml
+          classpath:hibernate-config.xml
+          classpath:book-club-context.xml
+          classpath:spring-mvc-servlet.xml
       </param-value>
   </context-param>
   

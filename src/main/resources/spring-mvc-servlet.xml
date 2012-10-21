@@ -7,7 +7,7 @@
     					http://www.springframework.org/schema/context
         				http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
-	<context:component-scan base-package="com.maestro.web.controller" />
+	<context:component-scan base-package="ua.book.club.controller" />
 	
 	<!-- Setting alwaysUseFullPath for Spring handler mapping and adapter to recognize URL by 
 		 prefix pattern (e.g. /somepath/*) -->

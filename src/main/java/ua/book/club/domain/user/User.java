@@ -1,7 +1,8 @@
 package ua.book.club.domain.user;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +16,7 @@ public class User extends Identifier implements UserDetails {
 
 	private String fio;
 	private String password;
-	private List<Role> roles;
+	private Set<Role> roles = new HashSet<Role>();
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
@@ -60,16 +61,16 @@ public class User extends Identifier implements UserDetails {
 		this.fio = fio;
 	}
 
-	public List<Role> getRoles() {
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 }

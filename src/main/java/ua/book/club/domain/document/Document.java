@@ -12,31 +12,38 @@ public class Document extends Identifier {
 	private String name;
 	private Date publishDate;
 	private User executor;
-	private List<Reading> readeings;
-	
+	private List<Reading> readings;
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Date getPublishDate() {
 		return publishDate;
 	}
+
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
+
 	public User getExecutor() {
 		return executor;
 	}
+
 	public void setExecutor(User executor) {
 		this.executor = executor;
 	}
-	public List<Reading> getReadeings() {
-		return readeings;
+
+	public List<Reading> getReadings() {
+		return readings;
 	}
-	public void setReadeings(List<Reading> readeings) {
-		this.readeings = readeings;
+
+	public void setReadings(List<Reading> readings) {
+		this.readings = readings;
 	}
-	
+
 }

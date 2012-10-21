@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="ua.book.club.domain.document.Document" table="document">
+		<id name="id" column="id">
+			<generator class="increment"/>
+		</id>
+				
+		<property name="name" column="name"/>
+		<property name="publishDate" column="print_date"/>
+		
+		<many-to-one
+			name="executor"
+			column="id_user"
+			class="ua.book.club.domain.user.User"
+			not-null="true"/>
+		
+		<set name="readings" inverse="true">
+        	<key column="id_document"/>
+			<one-to-many class="ua.book.club.domain.reading.Reading"/>
+        </set>
+		
+
+	</class>
+</hibernate-mapping> 

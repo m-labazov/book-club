@@ -14,11 +14,15 @@
 	       
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>	
        
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mappingResources">
             <list>
        			<value>mappings\user.hbm.xml</value>
+       			<value>mappings\role.hbm.xml</value>
+       			<value>mappings\document.hbm.xml</value>
+       			<value>mappings\reading.hbm.xml</value>
+       			<value>mappings\department.hbm.xml</value>
             </list>
         </property>
          <property name="hibernateProperties">
@@ -26,7 +30,7 @@
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
-	  	        <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl}</prop>
+	  	        <prop key="hibernate.hbm2ddl.auto">update]</prop>
             </props>
         </property>
     </bean>
@@ -46,9 +50,12 @@
             </props>
 		</constructor-arg>
     </bean>
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" 
-    	p:session-factory-ref="sessionFactory"  	p:nested-transaction-allowed="true"/>
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	     <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>	       
 	       
 </beans>

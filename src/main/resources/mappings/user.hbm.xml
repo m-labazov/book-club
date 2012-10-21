@@ -11,6 +11,15 @@
 				
 		<property name="fio" column="fio"/>
 		<property name="password" column="password"/>
+		
+		<set name="roles" table="user_2_role">
+		    <key column="id_user"/>
+			<many-to-many
+				column="id_role"
+				class="ua.book.club.domain.role.Role"
+				/>
+		</set>
+		    
 
 	</class>
 </hibernate-mapping> 

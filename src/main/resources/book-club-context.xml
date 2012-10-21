@@ -11,9 +11,31 @@
     <bean name="user.service" class="ua.book.club.service.user.UserService">
         <property name="dao">
 			<bean class="ua.book.club.dao.user.UserDao">
-				<property name="sessionFactory">
-            		<ref bean="sessionFactory"/>
-       			</property>
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>            
+        </property>
+    </bean>	
+    
+    <bean name="department.service" class="ua.book.club.service.department.DepartmentService">
+        <property name="dao">
+			<bean class="ua.book.club.dao.department.DepartmentDao">
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>            
+        </property>
+    </bean>	
+    
+    <bean name="document.service" class="ua.book.club.service.document.DocumentService">
+        <property name="dao">
+			<bean class="ua.book.club.dao.document.DocumentDao">
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>            
+        </property>
+    </bean>	
+    
+    <bean name="reading.service" class="ua.book.club.service.reading.ReadingService">
+        <property name="dao">
+			<bean class="ua.book.club.dao.reading.ReadingDao">
+				<property name="sessionFactory" ref="sessionFactory"/>
 			</bean>            
         </property>
     </bean>	

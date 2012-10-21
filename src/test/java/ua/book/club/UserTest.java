@@ -20,10 +20,7 @@ public class UserTest extends AbstractTest<User, UserService> {
 
 	@Override
 	protected User getEntity() {
-		User user = new User();
-		user.setFio("Michael Carlson");
-		user.setPassword("abcdef");
-		return user;
+		return TestUtil.newUser();
 	}
 
 	@Override
